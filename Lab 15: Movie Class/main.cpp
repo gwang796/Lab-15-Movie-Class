@@ -26,16 +26,16 @@ public:
     int getYear() {return year;}
     string getScreenWriter() {return screenWriter;}
     //setter functions
-    string setName(string n) {name = n; return n;}
-    int setYear(int y) {year = y; return y;}
-    string setScreenWriter(string s) {screenWriter = s; return s;}
+    void setName(string n) {name = n;}
+    void setYear(int y) {year = y;}
+    void setScreenWriter(string s) {screenWriter = s;}
     //function print displays data of Movie object
     //arguments: none
     //return: none
     void print(){
         cout << "Movie: " << name << endl;
         cout << setw(WIDTH) << "Year: " << year << endl;
-        cout << setw(WIDTH) << "Screen Writer: " << screenWriter << endl;
+        cout << setw(WIDTH1) << "Screen Writer: " << screenWriter << endl;
     }
     
 };
@@ -47,7 +47,6 @@ int main(int argc, const char * argv[]) {
     string k; //holds temporary screen writer
     int x; // holds temporary year
     string j; //holds temporary name
-    int i = 0; //index
     //check if input file is open and good to be used
     if (inputFile.good()) {
         //keep reading until end of file starting with temporary screen writer
@@ -62,7 +61,6 @@ int main(int argc, const char * argv[]) {
             tmp.setName(j);
             //adding temporary Movie object to movie vector
             movie.push_back(tmp);
-            i++;
         }
         inputFile.close(); //closing input file
     } else{ //if input file cannot be opened
@@ -72,9 +70,7 @@ int main(int argc, const char * argv[]) {
     
     //output vector
     for (auto val : movie) {
-        cout << "Movie: " << val.getName() << endl;
-        cout << setw(WIDTH) << "Year: "<< val.getYear() << endl;
-        cout << setw(WIDTH1) << "Screen Writer: "<< val.getScreenWriter() << endl;
+        val.print(); //calling print function from Movie class
         cout << endl;
     }
 }
