@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 int WIDTH = 10;
@@ -38,5 +39,21 @@ public:
 
 int main(int argc, const char * argv[]) {
     vector <Movie> movie;
-    ifstream fin("Movies.txt");
+    ifstream inputFile("Movies.txt");
+    string k; //holds temporary screen writer
+    int x; // holds temporary year
+    string j; //holds temporary name
+    
+    if (inputFile.good()) {
+        while (getline(inputFile,k)) {
+            inputFile >> x;
+            inputFile.ignore();
+            getline(inputFile,j);
+            
+            Movie tmp;
+            tmp.setScreenWriter(k);
+            tmp.setYear(x);
+            tmp.setScreenWriter(j);
+        }
+    }
 }
