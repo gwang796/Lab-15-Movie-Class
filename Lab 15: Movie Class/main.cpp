@@ -43,7 +43,7 @@ int main(int argc, const char * argv[]) {
     string k; //holds temporary screen writer
     int x; // holds temporary year
     string j; //holds temporary name
-    
+    int i = 0; //index
     if (inputFile.good()) {
         while (getline(inputFile,k)) {
             inputFile >> x;
@@ -54,6 +54,18 @@ int main(int argc, const char * argv[]) {
             tmp.setScreenWriter(k);
             tmp.setYear(x);
             tmp.setScreenWriter(j);
+            movie.push_back(tmp);
+            i++;
         }
+        inputFile.close();
+    } else{
+        cout << "Input File could not be opened" << endl;
+        return 1;
+    }
+    
+    for (auto val : movie) {
+        cout << "Movie: " << movie[i].getName() << endl;
+        cout << setw(WIDTH) << "Year: "<< movie[i].getYear() << endl;
+        cout << setw(WIDTH) << "Screen Writer: "<< movie[i].getScreenWriter() << endl;
     }
 }
